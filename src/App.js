@@ -9,9 +9,20 @@ import {Shift,Push,Every,Some} from './manyComponents';
 import {Object,Object1,Object2,Object3} from './props';
 //import { Stringify1,Stringify } from './many';
 import Button from './clickProps';
-import StateHook from './usestate';
-import Hooks from './useState1'
+import StateHook from './hooks/usestate';
+import Hooks from './hooks/useState1'
+//import  UserEffect  from './hooks/useEffect';
+import  DataEffect from './hooks/userEffect'
+import { create } from '@mui/material/styles/createTransitions';
+import { createColorScheme } from '@mui/material';
+import { createContext } from 'react';
+import { Context, UseContext } from './hooks/useContext';
 
+
+
+export const MovieInfoContext=createContext();
+
+export const storeContext=createContext(); 
 
 function App() {
   const movie_info={
@@ -24,7 +35,8 @@ function App() {
   }
 
 
-  const name="swathi";
+
+  const names=["swathi","shivani","siri"];
 
   const handleClick = ()=>
     alert("button Clicked!");
@@ -33,6 +45,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <MovieInfoContext.Provider value={movie_info}>
+          <UseContext/>
+        </MovieInfoContext.Provider>
+
+        <storeContext.Provider value={names}>
+          <Context/>
+        </storeContext.Provider>
+        <DataEffect/>
         <p>
           Edit <code>src/App.js</code> and save to reload.
           
@@ -47,6 +67,7 @@ function App() {
         >
           Learn React
         </a>
+        
         <Means/>
         <Pop/>
         <Names/>
@@ -65,6 +86,7 @@ function App() {
         <Button click={handleClick}/>
         <StateHook/>
         <Hooks/>
+      
 
         
       </header>
